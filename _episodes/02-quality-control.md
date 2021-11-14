@@ -487,27 +487,39 @@ And, since we are only logging into the AWS instance via the
 command line - it does not have any web browser setup to display 
 these files either.
 
-So the easiest way to look at these webpage summary reports will be
-to transfer them to our local computers (i.e. your laptop).
+**If your lesson is taking place in CoCalc, then the best way to look
+at each of the HTML files would be to transfer them to CoCalc, as shown below.**
+
+If you are working with a Linux or MacOS computer, and feel comfortable to do so,
+you can also transfer the files into your local computer (i.e. your laptop).
 
 To transfer a file from a remote server to our own machines, we will
 use `scp`, which we learned yesterday in the Shell Genomics lesson.
 
 First we
-will make a new directory on our computer to store the HTML files
-we are transferring. Let's put it on our desktop for now. Open a new
-tab in your terminal program (you can use the pull down menu at the
-top of your screen or the Cmd+t keyboard shortcut) and type:
+will make a new directory on our to store the HTML files
+we are transferring. Open a new tab in your terminal program and type:
 
+
+**On CoCalc:**
 ~~~
-$ mkdir -p ~/Desktop/fastqc_html
+$ mkdir -p ~/fastqc_html
+$ cd ~/fastqc_html
 ~~~
 {: .bash}
 
-Now we can transfer our HTML files to our local computer using `scp`.
+
+If you prefer to use your own computer, you can make a new folder in your Desktop:
+~~~
+$ mkdir -p ~/Desktop/fastqc_html
+$ cd ~/Desktop/fastqc_html
+~~~
+{: .bash}
+
+Now we can transfer our HTML files using `scp`.
 
 ~~~
-$ scp dcuser@ec2-34-238-162-94.compute-1.amazonaws.com:~/dc_workshop/results/fastqc_untrimmed_reads/*.html ~/Desktop/fastqc_html
+$ scp dcuser@ec2-34-238-162-94.compute-1.amazonaws.com:~/dc_workshop/results/fastqc_untrimmed_reads/*.html .
 ~~~
 {: .bash}
 
@@ -554,7 +566,10 @@ SRR2589044_2_fastqc.html                      100%  251KB 592.2KB/s   00:00
 
 Now we can go to our new directory and open the 6 HTML files.
 
-Depending on your system,
+**On CoCalc: you can open the HTML files directly on CoCalc.
+When you open the files, make sure to select to view them in "Quick Preview" mode.**
+
+On your local computer: depending on your system,
 you should be able to select and open them all at once via a right click menu
 in your file browser.
 
