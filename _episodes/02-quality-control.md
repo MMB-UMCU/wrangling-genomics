@@ -496,10 +496,8 @@ you can also transfer the files into your local computer (i.e. your laptop).
 To transfer a file from a remote server to our own machines, we will
 use `scp`, which we learned yesterday in the Shell Genomics lesson.
 
-First we
-will make a new directory on our to store the HTML files
-we are transferring. Open a new tab in your terminal program and type:
-
+We will make a new directory on our Cocalc project to store the HTML files
+we are transferring. For this, we will first create another Linux terminal by clicking the 'New' button. Using this new terminal we will type the following:
 
 **On CoCalc:**
 ~~~
@@ -507,7 +505,6 @@ $ mkdir -p ~/fastqc_html
 $ cd ~/fastqc_html
 ~~~
 {: .bash}
-
 
 If you prefer to use your own computer, you can make a new folder in your Desktop:
 ~~~
@@ -517,10 +514,11 @@ $ cd ~/Desktop/fastqc_html
 {: .bash}
 
 Now we can transfer our HTML files using `scp`.
-
 ~~~
 $ scp dcuser@ec2-34-238-162-94.compute-1.amazonaws.com:~/dc_workshop/results/fastqc_untrimmed_reads/*.html .
 ~~~
+Note: the dot at the end of the command indicates that all files will be transferred to your current working directory.
+
 {: .bash}
 
 > ## Note on using zsh
