@@ -265,7 +265,7 @@ $ bcftools call --ploidy 1 -m -v -o results/vcf/SRR2584866_variants.vcf results/
 Filter the SNVs for the final output in VCF format, using `vcfutils.pl`:
 
 ~~~
-$ vcfutils.pl varFilter results/bcf/SRR2584866_variants.vcf  > results/vcf/SRR2584866_final_variants.vcf
+$ vcfutils.pl varFilter results/vcf/SRR2584866_variants.vcf  > results/vcf/SRR2584866_final_variants.vcf
 ~~~
 {: .bash}
 
@@ -478,14 +478,19 @@ this box, type the name of the "chromosome" followed by a colon and the position
 
 [IGV](http://www.broadinstitute.org/igv/) is a stand-alone browser, which has the advantage of being installed locally and providing fast access. Web-based genome browsers, like [Ensembl](http://www.ensembl.org/index.html) or the [UCSC browser](https://genome.ucsc.edu/), are slower, but provide more functionality. They not only allow for more polished and flexible visualization, but also provide easy access to a wealth of annotations and external data sources. This makes it straightforward to relate your data with information about repeat regions, known genes, epigenetic features or areas of cross-species conservation, to name just a few.
 
-In order to use IGV, we will need to transfer some files to our local machine. We know how to do this with `scp`. 
+
+**IGV can be downloaded into your own computer and used as a Desktop application.
+However, for this course, we will be using the [IGV's web application](https://igv.org/app/).**
+
+In order to use IGV, we will need to transfer some files to our local machine. 
+**Before we do that, we will need to transfer them to CoCalc.** We know how to do this with `scp`. 
 Open a new tab in your terminal window and create a new folder. We will put this folder on our Desktop for 
 demonstration purposes, but in general you should avoide proliferating folders and files on your Desktop and 
 instead organize files within a directory structure like we have been using in our `dc_workshop` directory.
 
 ~~~
-$ mkdir ~/Desktop/files_for_igv
-$ cd ~/Desktop/files_for_igv
+$ mkdir ~/dc_workshop/files_for_igv
+$ cd ~/dc_workshop/files_for_igv
 ~~~
 {: .bash}
 
@@ -494,26 +499,26 @@ with your AWS instance number. The commands to `scp` always go in the terminal w
 local computer (not your AWS instance).
 
 ~~~
-$ scp dcuser@ec2-34-203-203-131.compute-1.amazonaws.com:~/dc_workshop/results/bam/SRR2584866.aligned.sorted.bam ~/Desktop/files_for_igv
-$ scp dcuser@ec2-34-203-203-131.compute-1.amazonaws.com:~/dc_workshop/results/bam/SRR2584866.aligned.sorted.bam.bai ~/Desktop/files_for_igv
-$ scp dcuser@ec2-34-203-203-131.compute-1.amazonaws.com:~/dc_workshop/data/ref_genome/ecoli_rel606.fasta ~/Desktop/files_for_igv
-$ scp dcuser@ec2-34-203-203-131.compute-1.amazonaws.com:~/dc_workshop/results/vcf/SRR2584866_final_variants.vcf ~/Desktop/files_for_igv
+$ scp dcuser@ec2-34-203-203-131.compute-1.amazonaws.com:~/dc_workshop/results/bam/SRR2584866.aligned.sorted.bam ~/dc_workshop/files_for_igv
+$ scp dcuser@ec2-34-203-203-131.compute-1.amazonaws.com:~/dc_workshop/results/bam/SRR2584866.aligned.sorted.bam.bai ~/dc_workshop/files_for_igv
+$ scp dcuser@ec2-34-203-203-131.compute-1.amazonaws.com:~/dc_workshop/data/ref_genome/ecoli_rel606.fasta ~/dc_workshop/files_for_igv
+$ scp dcuser@ec2-34-203-203-131.compute-1.amazonaws.com:~/dc_workshop/data/ref_genome/ecoli_rel606.fasta.fai ~/dc_workshop/files_for_igv
+$ scp dcuser@ec2-34-203-203-131.compute-1.amazonaws.com:~/dc_workshop/results/vcf/SRR2584866_final_variants.vcf ~/dc_workshop/files_for_igv
 ~~~
 {: .bash}
 
 You will need to type the password for your AWS instance each time you call `scp`. 
 
-Next, we need to open the IGV software. If you have not done so already, you can download IGV from the [Broad Institute's software page](https://www.broadinstitute.org/software/igv/download), double-click the `.zip` file
-to unzip it, and then drag the program into your Applications folder. 
+Now, on CoCalc, select these files and download them to your computer (by clicking the cloud icon). You may need to unzip them.
 
-1. Open IGV.
-2. Load our reference genome file (`ecoli_rel606.fasta`) into IGV using the **"Load Genomes from File..."** option under the **"Genomes"** pull-down menu.
-3. Load our BAM file (`SRR2584866.aligned.sorted.bam`) using the **"Load from File..."** option under the **"File"** pull-down menu. 
-4.  Do the same with our VCF file (`SRR2584866_final_variants.vcf`).
+1. Open [IGV's web application](https://igv.org/app/).
+2. Load our reference genome file (`ecoli_rel606.fasta`) and its index file (`ecoli_rel606.fasta.fai`) into IGV using the **"Local File..."** option under the **"Genome"** pull-down menu.
+3. Load our BAM file (`SRR2584866.aligned.sorted.bam`) and its index file (`SRR2584866.aligned.sorted.bam.bai`) using the **"Local File..."** option under the **"Tracks"** pull-down menu. 
+4.  Repeat step 3 with our VCF file (`SRR2584866_final_variants.vcf`).
 
 Your IGV browser should look like the screenshot below:
 
-![IGV](../img/igv-screenshot.png)
+![IGV](../img/igv-web-screenshot.png)
 
 There should be two tracks: one coresponding to our BAM file and the other for our VCF file. 
 
