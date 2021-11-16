@@ -380,7 +380,7 @@ to learn more about the VCF file format.
 >> {: .bash}
 >> 
 >> ~~~ 
->> 766
+>> 767
 >> ~~~
 >> {: .output}
 >>
